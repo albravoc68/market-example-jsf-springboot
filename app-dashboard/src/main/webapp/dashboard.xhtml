@@ -1,0 +1,153 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    
+    <ui:define name="title">Inicio</ui:define>
+    
+    <ui:define name="head">
+        <script type="text/javascript">
+            //<![CDATA[
+            function skinChart() {
+                this.cfg.shadow = false;
+                this.cfg.title = '';
+                this.cfg.seriesColors = ['#007be5', '#20d077'];
+                this.cfg.grid = {
+                    background: '#ffffff',
+                    borderColor: '#ffffff',
+                    gridLineColor: '#F5F5F5',
+                    shadow: false
+                };
+                this.cfg.axesDefaults = {
+                    rendererOptions: {
+                        textColor: '#666F77'
+                    }
+                };
+                this.cfg.seriesDefaults = {
+                    shadow: false,
+                    lineWidth: 1,
+                    markerOptions: {
+                        shadow: false,
+                        size: 7,
+                        style: 'circle'
+                    }
+                }
+            }
+            //]]>  
+        </script>
+        <style type="text/css">
+            .main-content {
+                padding: 0;
+            }
+        </style>
+    </ui:define>
+    
+    <ui:define name="content">
+        
+        <div class="ui-g ui-fluid dashboard">
+            <div class="ui-g-12 ui-md-4">
+                <div class="card clearfix summary">
+                    <span class="title">Tickets</span>
+                    <span class="detail">Tickets sin resolver</span>
+                    <span class="count tickets">12</span>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-4">
+                <div class="card clearfix summary">
+                    <span class="title">Ventas</span>
+                    <span class="detail">Número de ventas</span>
+                    <span class="count sales">534</span>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-4">
+                <div class="card clearfix summary">
+                    <span class="title">Ganancias</span>
+                    <span class="detail">Total ventas</span>
+                    <span class="count profits">$3,200</span>
+                </div>
+            </div>
+
+            <div class="ui-g-12 ui-md-4">
+                <div class="highlight-box">
+                    <div class="initials" style="background-color:#007be5;color:#ffffff">T</div>
+                    <div class="card">
+                        <span class="fa fa-question-circle"></span>
+                        <span>Tickets</span>
+                        <span class="count">81</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-4">
+                <div class="highlight-box">
+                    <div class="initials" style="background-color:#20d077;color:#038d4a">R</div>
+                    <div class="card">
+                        <span class="fa fa-question-circle-o"></span>
+                        <span>Resueltos</span>
+                        <span class="count">21</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-4">
+                <div class="highlight-box">
+                    <div class="initials" style="background-color:#ef6262;color:#a83d3b">PR</div>
+                    <div class="card">
+                        <span class="fa fa-check"></span>
+                        <span>Por Resolver</span>
+                        <span class="count">60</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!--<div class="ui-g-12 ui-md-6 ui-lg-4">
+                <p:panel header="Contact Us" style="text-align:center;background:#fff;height:100%">
+                    <div class="ui-g">
+                        <div class="ui-g-12">
+                            <p:inputText placeholder="Name" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputText placeholder="Age" />
+                        </div>
+                        <div class="ui-g-12">
+                            <p:inputTextarea placeholder="Message" autoResize="false"/>
+                        </div>
+                    </div>
+                    <p:commandButton type="button" value="Send" icon="fa fa-check"></p:commandButton>
+                </p:panel>
+            </div>-->
+
+            <!--<div class="ui-g-12 ui-md-6">
+                <h:form>
+                    <div class="card">
+                        <p:dataTable var="car" value="#{dtBasicView.cars}" selectionMode="single" rowKey="#{car.id}" reflow="true">
+                            <f:facet name="header">Sales List</f:facet>
+                            <p:column headerText="Id">
+                                <h:outputText value="#{car.id}" />
+                            </p:column>
+
+                            <p:column headerText="Year">
+                                <h:outputText value="#{car.year}" />
+                            </p:column>
+
+                            <p:column headerText="Brand">
+                                <h:outputText value="#{car.brand}" />
+                            </p:column>
+
+                            <p:column headerText="Color">
+                                <h:outputText value="#{car.color}" />
+                            </p:column>
+                        </p:dataTable>
+                    </div>
+                </h:form>
+            </div>-->
+            <!--<div class="ui-g-12 ui-md-6">
+                <div class="card">
+                    <p:chart type="line" model="#{chartView.lineModel1}" responsive="true"/>
+                </div>
+            </div>-->
+        </div>
+        
+    </ui:define>
+    
+</ui:composition>
