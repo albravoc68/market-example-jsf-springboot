@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="product" type="cl.example.entities.domain.entities.ProductEntity"-->
+        <!--@elvariable id="productsBean" type="cl.example.dashboard.beans.ProductsBean"-->
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="card">
+                        <h1>Productos</h1>
+                        <p>Productos - Market</p>
+
+                        <p:dataTable
+                                id="table"
+                                widgetVar="tableWidget"
+                                var="product"
+                                value="#{productsBean.productDM}"
+                                rows="20"
+                                paginator="true"
+                                style="text-align: center;"
+                                currentPageReportTemplate="Mostrando {startRecord}-{endRecord} de {totalRecords}"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="10,20,50"
+                                lazy="true">
+
+                            <p:column headerText="Acciones">
+                                <p:button
+                                        outcome="/create-product.xhtml?productId=#{product.id}"
+                                        value="Editar"
+                                        icon="fa fa-pencil-square-o"/>
+
+                                <p:commandButton
+                                        action="#{productsBean.deleteProduct(product.id)}"
+                                        value="Eliminar"
+                                        icon="fa fa-times"
+                                        style="background: #dc1616;"
+                                        update="form:table, form:msgs"/>
+                            </p:column>
+
+                            <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}">
+                                <p:outputLabel value="#{product.id}"/>
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="#{product.name}" filterBy="#{product.name}">
+                                <p:outputLabel value="#{product.name}"/>
+                            </p:column>
+
+                            <p:column headerText="Imagen">
+                                <h:graphicImage value="#{product.pictureUrl}" width="80" height="80"/>
+                            </p:column>
+
+                            <p:column headerText="Precio" sortBy="#{product.price}" filterBy="#{product.price}">
+                                <h:outputText value="#{product.price}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

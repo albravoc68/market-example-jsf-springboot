@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="product" type="cl.example.entities.domain.entities.vo.ProductVO"-->
+        <!--@elvariable id="createProductBean" type="cl.example.dashboard.beans.CreateProductBean"-->
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="card">
+                        <h1>Productos</h1>
+                        <p>#{empty createProductBean.product.id ? 'Crear' : 'Editar'} Producto - Market</p>
+
+                        <p:panelGrid id="product_panel" columns="2">
+
+                            <p:outputLabel value="Nombre"/>
+                            <p:inputText value="#{createProductBean.product.name}"/>
+
+                            <p:outputLabel value="Imagen"/>
+                            <p:inputText value="#{createProductBean.product.pictureUrl}" placeholder="Url"/>
+
+                            <p:outputLabel value="Precio ($)"/>
+                            <p:inputNumber value="#{createProductBean.product.price}" minValue="0"/>
+
+                            <p:spacer/>
+                            <p:commandButton
+                                    value="#{empty createProductBean.product.id ? 'Crear Producto' : 'Editar Producto'}"
+                                    ajax="false"
+                                    action="#{createProductBean.saveProduct}"
+                                    update="form:product_panel, form:msgs"/>
+
+                        </p:panelGrid>
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>

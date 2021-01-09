@@ -19,6 +19,10 @@ public abstract class BaseBean implements Serializable {
         return (AdminEntity) session.getAttribute("admin");
     }
 
+    protected int getClientId() {
+        return getAdmin().getClient().getId();
+    }
+
     protected void showError(String message) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", message);
         FacesContext.getCurrentInstance().addMessage(null, msg);
