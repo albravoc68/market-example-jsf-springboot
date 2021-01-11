@@ -49,4 +49,12 @@ public class TransactionProductEntity {
     @Column(name = "amount", nullable = false)
     private Integer amount;
 
+    @Basic
+    @Column(name = "unit_price", length = 11, nullable = false)
+    private Integer unitPrice;
+
+    public int getTotal() {
+        return amount * unitPrice;
+    }
+
 }

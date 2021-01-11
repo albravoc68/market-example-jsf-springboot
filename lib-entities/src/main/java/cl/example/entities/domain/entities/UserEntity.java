@@ -1,8 +1,10 @@
 package cl.example.entities.domain.entities;
 
+import cl.example.entities.domain.entities.vo.UserVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -13,37 +15,45 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.util.Date;
 
 @Entity
-@Table(name = "_transaction")
+@Table(name = "_user")
 @NoArgsConstructor
 @Setter
 @Getter
-public class TransactionEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "creation_datetime")
     @Basic
-    private Date creationDatetime;
+    @Column(name = "username", length = 45, nullable = false)
+    private String username;
 
     @Basic
-    @Column(name = "resolve", nullable = false)
-    private Boolean resolve;
+    @Column(name = "_password", columnDefinition = "text", nullable = false)
+    private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private UserEntity user;
+    @Basic
+    @Column(name = "fullname", length = 50, nullable = false)
+    private String fullName;
+
+    @Basic
+    @Column(name = "enable", nullable = false)
+    private Boolean enable;
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private ClientEntity client;
+
+    public UserVO toVO() {
+        UserVO vo = new UserVO();
+        BeanUtils.copyProperties(this, vo);
+        vo.setClientId(client.getId());
+
+        return vo;
+    }
 
 }

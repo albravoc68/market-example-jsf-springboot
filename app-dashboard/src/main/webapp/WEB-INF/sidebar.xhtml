@@ -23,7 +23,6 @@
                         <i class="fa fa-fw fa-cog"></i>
                     </a>
                     <ul>
-                        <li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Tickets</span><span class="menu-badge">2</span></a></li>
                         <li><a href="#{request.contextPath}/logout"><i class="fa fa-fw fa-sign-out"></i><span>Logout</span></a></li>
                     </ul>
                 </div>
@@ -39,7 +38,10 @@
 
                         <p:menuitem value="Transacciones" icon="fa fa-money" outcome="/transactions.xhtml"/>
 
-                        <p:menuitem value="Tickets" icon="fa fa-ticket"/>
+                        <p:submenu label="Usuarios" icon="fa fa-user">
+                            <p:menuitem icon="fa fa-users" value="Usuarios" outcome="/users.xhtml"/>
+                            <p:menuitem icon="fa fa-user-plus" value="Crear Usuario" outcome="/create-user.xhtml"/>
+                        </p:submenu>
 
                     </po:menu>
                 </div>

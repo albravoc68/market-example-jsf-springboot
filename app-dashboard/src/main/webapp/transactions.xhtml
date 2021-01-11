@@ -36,6 +36,10 @@
                                 <p:outputLabel value="#{transaction.id}"/>
                             </p:column>
 
+                            <p:column headerText="Usuario" sortBy="#{transaction.user.fullName}" filterBy="#{transaction.user.fullName}">
+                                <p:outputLabel value="#{transaction.user.fullName}"/>
+                            </p:column>
+
                             <p:column headerText="Fecha de creación" sortBy="#{transaction.creationDatetime}">
                                 <p:outputLabel value="#{transaction.creationDatetime}"/>
                             </p:column>
@@ -75,8 +79,12 @@
                         <p:outputLabel value="#{tp.id.product.name}"/>
                     </p:column>
 
-                    <p:column headerText="Precio">
-                        <p:outputLabel value="#{tp.id.product.price}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                    <p:column headerText="Precio Unitario">
+                        <p:outputLabel value="#{tp.unitPrice}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                    </p:column>
+
+                    <p:column headerText="Total">
+                        <p:outputLabel value="#{tp.total}" converter="cl.example.dashboard.converters.ClpConverter"/>
                     </p:column>
 
                 </p:dataTable>

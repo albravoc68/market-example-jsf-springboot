@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="user" type="cl.example.entities.domain.entities.UserEntity"-->
+        <!--@elvariable id="usersBean" type="cl.example.dashboard.beans.UsersBean"-->
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="card">
+                        <h1>Usuarios</h1>
+                        <p>Usuarios - Market</p>
+
+                        <p:dataTable
+                                id="table"
+                                widgetVar="tableWidget"
+                                var="user"
+                                value="#{usersBean.userDM}"
+                                rows="20"
+                                paginator="true"
+                                style="text-align: center;"
+                                currentPageReportTemplate="Mostrando {startRecord}-{endRecord} de {totalRecords}"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="10,20,50"
+                                lazy="true">
+
+                            <p:column headerText="Acciones">
+                                <p:button
+                                        outcome="/create-user.xhtml?userId=#{user.id}"
+                                        value="Editar"
+                                        icon="fa fa-pencil-square-o"/>
+                            </p:column>
+
+                            <p:column headerText="Id" sortBy="#{user.id}" filterBy="#{user.id}">
+                                <p:outputLabel value="#{user.id}"/>
+                            </p:column>
+
+                            <p:column headerText="Usuario" sortBy="#{user.username}" filterBy="#{user.username}">
+                                <p:outputLabel value="#{user.username}"/>
+                            </p:column>
+
+                            <p:column headerText="Nombre" sortBy="#{user.fullName}" filterBy="#{user.fullName}">
+                                <p:outputLabel value="#{user.fullName}"/>
+                            </p:column>
+
+                            <p:column headerText="Disponible">
+                                <p:outputLabel value="#{user.enable ? 'Disponible' : 'No Disponible'}"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
