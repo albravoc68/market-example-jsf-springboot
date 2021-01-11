@@ -11,4 +11,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
     void deleteByIdAndClient_Id(int productId, int clientId);
 
+    Integer countByClient_Id(int clientId);
+
 }

@@ -13,4 +13,6 @@ public interface TransactionProductRepository  extends JpaRepository<Transaction
 
     List<TransactionProductEntity> findById_Product_Id(int productId);
 
+    List<TransactionProductEntity> findById_Transaction_Client_Id(int clientId);
+
 }

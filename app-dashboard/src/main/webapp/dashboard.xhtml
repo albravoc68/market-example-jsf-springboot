@@ -45,107 +45,86 @@
     </ui:define>
     
     <ui:define name="content">
+
+        <!--@elvariable id="dashboardBean" type="cl.example.dashboard.beans.DashboardBean"-->
+        <!--@elvariable id="txp" type="cl.example.entities.domain.entities.TransactionProductEntity"-->
         
         <div class="ui-g ui-fluid dashboard">
             <div class="ui-g-12 ui-md-4">
                 <div class="card clearfix summary">
-                    <span class="title">Tickets</span>
-                    <span class="detail">Tickets sin resolver</span>
-                    <span class="count tickets">12</span>
+                    <span class="title">Productos</span>
+                    <span class="detail">Productos Disponibles</span>
+                    <span class="count tickets">#{dashboardBean.products}</span>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-4">
                 <div class="card clearfix summary">
                     <span class="title">Ventas</span>
                     <span class="detail">Número de ventas</span>
-                    <span class="count sales">534</span>
+                    <span class="count sales">#{dashboardBean.transactions}</span>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-4">
                 <div class="card clearfix summary">
                     <span class="title">Ganancias</span>
                     <span class="detail">Total ventas</span>
-                    <span class="count profits">$3,200</span>
+                    <p:outputLabel styleClass="count profits" value="#{dashboardBean.profits}" converter="cl.example.dashboard.converters.ClpConverter"/>
                 </div>
             </div>
 
             <div class="ui-g-12 ui-md-4">
                 <div class="highlight-box">
-                    <div class="initials" style="background-color:#007be5;color:#ffffff">T</div>
+                    <div class="initials" style="background-color:#007be5;color:#ffffff">U</div>
                     <div class="card">
                         <span class="fa fa-question-circle"></span>
-                        <span>Tickets</span>
-                        <span class="count">81</span>
+                        <span>Usuarios</span>
+                        <span class="count">#{dashboardBean.users}</span>
                     </div>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-4">
                 <div class="highlight-box">
-                    <div class="initials" style="background-color:#20d077;color:#038d4a">R</div>
+                    <div class="initials" style="background-color:#20d077;color:#038d4a">UA</div>
                     <div class="card">
                         <span class="fa fa-question-circle-o"></span>
-                        <span>Resueltos</span>
-                        <span class="count">21</span>
+                        <span>Usuarios Activos</span>
+                        <span class="count">#{dashboardBean.usersEnable}</span>
                     </div>
                 </div>
             </div>
             <div class="ui-g-12 ui-md-4">
                 <div class="highlight-box">
-                    <div class="initials" style="background-color:#ef6262;color:#a83d3b">PR</div>
+                    <div class="initials" style="background-color:#ef6262;color:#a83d3b">UI</div>
                     <div class="card">
                         <span class="fa fa-check"></span>
-                        <span>Por Resolver</span>
-                        <span class="count">60</span>
+                        <span>Usuarios Inactivos</span>
+                        <span class="count">#{dashboardBean.usersDisable}</span>
                     </div>
                 </div>
             </div>
-            
-            <!--<div class="ui-g-12 ui-md-6 ui-lg-4">
-                <p:panel header="Contact Us" style="text-align:center;background:#fff;height:100%">
-                    <div class="ui-g">
-                        <div class="ui-g-12">
-                            <p:inputText placeholder="Name" />
-                        </div>
-                        <div class="ui-g-12">
-                            <p:inputText placeholder="Age" />
-                        </div>
-                        <div class="ui-g-12">
-                            <p:inputTextarea placeholder="Message" autoResize="false"/>
-                        </div>
-                    </div>
-                    <p:commandButton type="button" value="Send" icon="fa fa-check"></p:commandButton>
-                </p:panel>
-            </div>-->
 
-            <!--<div class="ui-g-12 ui-md-6">
+            <div class="ui-g-12 ui-md-6">
                 <h:form>
                     <div class="card">
-                        <p:dataTable var="car" value="#{dtBasicView.cars}" selectionMode="single" rowKey="#{car.id}" reflow="true">
-                            <f:facet name="header">Sales List</f:facet>
-                            <p:column headerText="Id">
-                                <h:outputText value="#{car.id}" />
+                        <p:dataTable var="txp" value="#{dashboardBean.txps}" reflow="true" rows="5" style="text-align: center;">
+                            <f:facet name="header">Ultimas ventas: </f:facet>
+
+                            <p:column headerText="Usuario">
+                                <h:outputText value="#{txp.id.transaction.user.fullName}" />
                             </p:column>
 
-                            <p:column headerText="Year">
-                                <h:outputText value="#{car.year}" />
+                            <p:column headerText="Producto">
+                                <h:outputText value="#{txp.id.product.name}" />
                             </p:column>
 
-                            <p:column headerText="Brand">
-                                <h:outputText value="#{car.brand}" />
+                            <p:column headerText="Total">
+                                <h:outputText value="#{txp.total}" converter="cl.example.dashboard.converters.ClpConverter"/>
                             </p:column>
 
-                            <p:column headerText="Color">
-                                <h:outputText value="#{car.color}" />
-                            </p:column>
                         </p:dataTable>
                     </div>
                 </h:form>
-            </div>-->
-            <!--<div class="ui-g-12 ui-md-6">
-                <div class="card">
-                    <p:chart type="line" model="#{chartView.lineModel1}" responsive="true"/>
-                </div>
-            </div>-->
+            </div>
         </div>
         
     </ui:define>
