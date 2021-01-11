@@ -44,16 +44,16 @@
 
 This project contemplates the creation of two applications:
 
-(TODO) Online store (app-market):
+(In Progress) Online store (app-market):
 - It must show the products created in the dashboard.
 - You must allow payment through the OneClick api. (dev environment).
 - It must allow the creation of users.
 
-(In Progress) Dashboard (app-dashboard):
+(Done!) Dashboard (app-dashboard):
 - The login must be restricted to admin users. ✓
 - Must have a product maintainer.  ✓
 - Must have a transaction maintainer. ✓
-- You must have a user maintainer.
+- You must have a user maintainer. ✓
 
 ### Built With
 
@@ -79,8 +79,8 @@ The omega-menu-2.0.1.jar file must be installed using the following command in t
 ## Images
 <img src="readme-images/login.png" width="80" height="80">  <img src="readme-images/dashboard.png" width="80" height="80">
 <img src="readme-images/products.png" width="80" height="80"> <img src="readme-images/create-product.png" width="80" height="80">
-<img src="readme-images/transactions.png" width="80" height="80">
-
+<img src="readme-images/transactions.png" width="80" height="80"> <img src="readme-images/users.png" width="80" height="80">
+<img src="readme-images/create-user.png" width="80" height="80">
 
 <!-- LICENSE -->
 ## License
