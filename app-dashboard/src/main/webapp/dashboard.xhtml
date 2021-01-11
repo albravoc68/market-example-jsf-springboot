@@ -7,43 +7,6 @@
     
     <ui:define name="title">Inicio</ui:define>
     
-    <ui:define name="head">
-        <script type="text/javascript">
-            //<![CDATA[
-            function skinChart() {
-                this.cfg.shadow = false;
-                this.cfg.title = '';
-                this.cfg.seriesColors = ['#007be5', '#20d077'];
-                this.cfg.grid = {
-                    background: '#ffffff',
-                    borderColor: '#ffffff',
-                    gridLineColor: '#F5F5F5',
-                    shadow: false
-                };
-                this.cfg.axesDefaults = {
-                    rendererOptions: {
-                        textColor: '#666F77'
-                    }
-                };
-                this.cfg.seriesDefaults = {
-                    shadow: false,
-                    lineWidth: 1,
-                    markerOptions: {
-                        shadow: false,
-                        size: 7,
-                        style: 'circle'
-                    }
-                }
-            }
-            //]]>  
-        </script>
-        <style type="text/css">
-            .main-content {
-                padding: 0;
-            }
-        </style>
-    </ui:define>
-    
     <ui:define name="content">
 
         <!--@elvariable id="dashboardBean" type="cl.example.dashboard.beans.DashboardBean"-->
