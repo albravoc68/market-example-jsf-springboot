@@ -26,8 +26,12 @@ public class ProductsBean extends BaseBean {
     }
 
     public void deleteProduct(int productId) {
-        productService.deleteProduct(productId, getClientId());
-        showInfo("Producto borrado exitosamente!");
+        try {
+            productService.deleteProduct(productId, getClientId());
+            showInfo("Producto borrado exitosamente!");
+        } catch (Exception e) {
+            showError("Imposible borrar producto si ya posee transacciones.");
+        }
     }
 
 }

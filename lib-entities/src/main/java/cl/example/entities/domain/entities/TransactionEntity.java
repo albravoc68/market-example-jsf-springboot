@@ -1,10 +1,8 @@
 package cl.example.entities.domain.entities;
 
-import cl.example.entities.domain.entities.vo.ProductVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.BeanUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,45 +13,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity
-@Table(name = "_product")
+@Table(name = "_transaction")
 @NoArgsConstructor
 @Setter
 @Getter
-public class ProductEntity {
+public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "creation_datetime")
     @Basic
-    @Column(name = "_name", length = 40, nullable = false)
-    private String name;
+    private Date creationDatetime;
 
     @Basic
-    @Column(name = "picture_url", columnDefinition = "text")
-    private String pictureUrl;
-
-    @Basic
-    @Column(name = "price", length = 11, nullable = false)
-    private Integer price;
-
-    @Basic
-    @Column(name = "enable", nullable = false)
-    private Boolean enable;
+    @Column(name = "resolve", nullable = false)
+    private Boolean resolve;
 
     @ManyToOne
     @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private ClientEntity client;
-
-    public ProductVO toVO() {
-        ProductVO vo = new ProductVO();
-        BeanUtils.copyProperties(this, vo);
-        vo.setClientId(client.getId());
-
-        return vo;
-    }
 
 }

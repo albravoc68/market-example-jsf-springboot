@@ -29,6 +29,9 @@
                             <p:outputLabel value="Precio ($)"/>
                             <p:inputNumber value="#{createProductBean.product.price}" minValue="0"/>
 
+                            <p:outputLabel value="Disponible"/>
+                            <p:selectBooleanCheckbox value="#{createProductBean.product.enable}"/>
+
                             <p:spacer/>
                             <p:commandButton
                                     value="#{empty createProductBean.product.id ? 'Crear Producto' : 'Editar Producto'}"

@@ -1,6 +1,7 @@
 package cl.example.dashboard.model;
 
 import cl.example.entities.domain.entities.ProductEntity;
+import cl.example.entities.domain.entities.TransactionEntity;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +16,13 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-public class ProductDataModel extends EntityLazyDataModel<ProductEntity> {
+public class TransactionDataModel extends EntityLazyDataModel<TransactionEntity> {
 
     @Autowired
     private EntityManager em;
 
-    public ProductDataModel() {
-        super(ProductEntity.class);
+    public TransactionDataModel() {
+        super(TransactionEntity.class);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class ProductDataModel extends EntityLazyDataModel<ProductEntity> {
     private Integer clientId;
 
     @Override
-    protected List<Predicate> applyCustomQuery(CriteriaBuilder cb, CriteriaQuery<?> query, Root<ProductEntity> root) {
+    protected List<Predicate> applyCustomQuery(CriteriaBuilder cb, CriteriaQuery<?> query, Root<TransactionEntity> root) {
         List<Predicate> predicates = new ArrayList<>();
 
         if (clientId != null) {

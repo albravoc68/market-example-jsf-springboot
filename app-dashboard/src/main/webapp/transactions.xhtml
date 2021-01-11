@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="transaction" type="cl.example.entities.domain.entities.TransactionEntity"-->
+        <!--@elvariable id="tp" type="cl.example.entities.domain.entities.TransactionProductEntity"-->
+        <!--@elvariable id="transactionsBean" type="cl.example.dashboard.beans.TransactionsBean"-->
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true"/>
+
+            <div class="ui-g">
+                <div class="ui-g-12">
+                    <div class="card">
+                        <h1>Transacciones</h1>
+                        <p>Transacciones - Market</p>
+
+                        <p:dataTable
+                                id="table"
+                                widgetVar="tableWidget"
+                                var="transaction"
+                                value="#{transactionsBean.transactionDM}"
+                                rows="20"
+                                paginator="true"
+                                style="text-align: center;"
+                                currentPageReportTemplate="Mostrando {startRecord}-{endRecord} de {totalRecords}"
+                                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="10,20,50"
+                                lazy="true">
+
+                            <p:column headerText="Id" sortBy="#{transaction.id}" filterBy="#{transaction.id}">
+                                <p:outputLabel value="#{transaction.id}"/>
+                            </p:column>
+
+                            <p:column headerText="Fecha de creación" sortBy="#{transaction.creationDatetime}">
+                                <p:outputLabel value="#{transaction.creationDatetime}"/>
+                            </p:column>
+
+                            <p:column headerText="Resuelto">
+                                <p:outputLabel value="#{transaction.resolve ? 'Resuelto' : 'Sin resolver'}"/>
+                            </p:column>
+
+                            <p:column headerText="Productos">
+                                <p:commandLink value="Ver detalle" update=":form:products_panel" oncomplete="PF('productsPanel').show();">
+                                    <f:setPropertyActionListener value="#{transaction}" target="#{transactionsBean.selectedTransaction}"/>
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </div>
+                </div>
+            </div>
+
+            <p:dialog
+                    id="products_panel"
+                    header="Detalle ##{transactionsBean.selectedTransaction.id}"
+                    widgetVar="productsPanel"
+                    closable="true"
+                    resizable="false"
+                    style="text-align: center;"
+                    modal="true">
+
+                <p:dataTable value="#{transactionsBean.getProducts()}" var="tp" style="width: 400px;">
+
+                    <p:column headerText="Cantidad">
+                        <p:outputLabel value="#{tp.amount}"/>
+                    </p:column>
+
+                    <p:column headerText="Producto">
+                        <p:outputLabel value="#{tp.id.product.name}"/>
+                    </p:column>
+
+                    <p:column headerText="Precio">
+                        <p:outputLabel value="#{tp.id.product.price}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </p:dialog>
+
+        </h:form>
+
+    </ui:define>
+</ui:composition>

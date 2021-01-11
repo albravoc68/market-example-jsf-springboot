@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+@FacesConverter("cl.example.dashboard.converters.ClpConverter")
 public class ClpConverter implements Converter {
 
     @Override

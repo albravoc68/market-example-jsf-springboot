@@ -31,7 +31,7 @@
                                 rowsPerPageTemplate="10,20,50"
                                 lazy="true">
 
-                            <p:column headerText="Acciones">
+                            <p:column headerText="Acciones" width="200">
                                 <p:button
                                         outcome="/create-product.xhtml?productId=#{product.id}"
                                         value="Editar"
@@ -45,20 +45,24 @@
                                         update="form:table, form:msgs"/>
                             </p:column>
 
-                            <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}">
+                            <p:column headerText="Id" sortBy="#{product.id}" filterBy="#{product.id}" width="40">
                                 <p:outputLabel value="#{product.id}"/>
                             </p:column>
 
-                            <p:column headerText="Nombre" sortBy="#{product.name}" filterBy="#{product.name}">
+                            <p:column headerText="Nombre" sortBy="#{product.name}" filterBy="#{product.name}" width="100">
                                 <p:outputLabel value="#{product.name}"/>
                             </p:column>
 
-                            <p:column headerText="Imagen">
+                            <p:column headerText="Imagen" width="100">
                                 <h:graphicImage value="#{product.pictureUrl}" width="80" height="80"/>
                             </p:column>
 
-                            <p:column headerText="Precio" sortBy="#{product.price}" filterBy="#{product.price}">
-                                <h:outputText value="#{product.price}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                            <p:column headerText="Precio" sortBy="#{product.price}" filterBy="#{product.price}" width="100">
+                                <p:outputLabel value="#{product.price}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                            </p:column>
+
+                            <p:column headerText="Disponible" sortBy="#{product.price}" filterBy="#{product.price}" width="100">
+                                <p:outputLabel value="#{product.enable ? 'Disponible' : 'No Disponible'}"/>
                             </p:column>
 
                         </p:dataTable>
