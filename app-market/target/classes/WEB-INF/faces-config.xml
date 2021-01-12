@@ -8,4 +8,9 @@
         <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
     </application>
 
+    <converter>
+        <converter-id>cl.example.jsf.converters.ClpConverter</converter-id>
+        <converter-class>cl.example.jsf.converters.ClpConverter</converter-class>
+    </converter>
+
 </faces-config>

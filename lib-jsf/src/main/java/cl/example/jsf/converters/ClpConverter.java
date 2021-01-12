@@ -1,4 +1,4 @@
-package cl.example.dashboard.converters;
+package cl.example.jsf.converters;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-@FacesConverter("cl.example.dashboard.converters.ClpConverter")
+@FacesConverter("cl.example.jsf.converters.ClpConverter")
 public class ClpConverter implements Converter {
 
     @Override

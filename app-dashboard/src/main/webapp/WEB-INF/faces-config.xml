@@ -9,8 +9,8 @@
     </application>
 
     <converter>
-        <converter-id>cl.example.dashboard.converters.ClpConverter</converter-id>
-        <converter-class>cl.example.dashboard.converters.ClpConverter</converter-class>
+        <converter-id>cl.example.jsf.converters.ClpConverter</converter-id>
+        <converter-class>cl.example.jsf.converters.ClpConverter</converter-class>
     </converter>
 
 </faces-config>

@@ -31,7 +31,7 @@
                 <div class="card clearfix summary">
                     <span class="title">Ganancias</span>
                     <span class="detail">Total ventas</span>
-                    <p:outputLabel styleClass="count profits" value="#{dashboardBean.profits}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                    <p:outputLabel styleClass="count profits" value="#{dashboardBean.profits}" converter="cl.example.jsf.converters.ClpConverter"/>
                 </div>
             </div>
 
@@ -81,7 +81,7 @@
                             </p:column>
 
                             <p:column headerText="Total">
-                                <h:outputText value="#{txp.total}" converter="cl.example.dashboard.converters.ClpConverter"/>
+                                <h:outputText value="#{txp.total}" converter="cl.example.jsf.converters.ClpConverter"/>
                             </p:column>
 
                         </p:dataTable>

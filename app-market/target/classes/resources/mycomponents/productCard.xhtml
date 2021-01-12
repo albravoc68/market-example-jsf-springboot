@@ -15,7 +15,7 @@
 <composite:implementation>
     <div class="product-card ui-g-12 ui-md-3">
         <img src="#{cc.attrs.product.pictureUrl}" alt=""/>
-        <h2><p:outputLabel value="$#{cc.attrs.product.price}" styleClass="price"/></h2>
+        <h2><p:outputLabel value="#{cc.attrs.product.price}" styleClass="price" converter="cl.example.jsf.converters.ClpConverter"/></h2>
         <p><p:outputLabel value="#{cc.attrs.product.name}"/></p>
         <p:commandButton icon="fa fa-shopping-cart" value=" Agregar al carrito"/>
     </div>
