@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 public class DashboardConfigurationProperties {
 
-    @Value("${example.market.id}")
-    private Integer marketId;
+    @Value("${example.client.id}")
+    private Integer clientId;
 
 }

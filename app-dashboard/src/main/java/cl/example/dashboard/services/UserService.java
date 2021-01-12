@@ -60,6 +60,11 @@ public class UserService {
             throw new RuntimeException("Username cannot be null.");
         }
 
+        UserEntity u = userRepository.findByUsernameAndClient_Id(vo.getUsername(), vo.getClientId());
+        if (u != null && !u.getId().equals(vo.getId())) {
+            throw new RuntimeException("A user with that username already exists.");
+        }
+
         String password = new BCryptPasswordEncoder().encode(vo.getPassword());
         vo.setPassword(password);
 

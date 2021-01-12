@@ -9,6 +9,8 @@ public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByIdAndClient_Id(int userId, int clientId);
 
+    UserEntity findByUsernameAndClient_Id(String username, int clientId);
+
     Integer countByClient_Id(int clientId);
 
     Integer countByClient_IdAndEnable(int clientId, boolean enable);

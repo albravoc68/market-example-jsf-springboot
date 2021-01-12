@@ -49,8 +49,7 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/resources/**",
                         "/",
                         "/javax.faces.resource/**",
-                        "/login.xhtml",
-                        "/access.xhtml"
+                        "/login.xhtml"
                 ).permitAll()
                 .anyRequest()
                 .hasAnyRole("ADMIN")
@@ -88,7 +87,7 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService getUserDetailsService() {
         return username -> {
-            AdminEntity admin = adminRepository.findByUsernameAndClient_Id(username, props.getMarketId());
+            AdminEntity admin = adminRepository.findByUsernameAndClient_Id(username, props.getClientId());
             if (admin == null) {
                 throw new UsernameNotFoundException(username);
             }
@@ -108,7 +107,7 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
             if (authentication != null && authentication.isAuthenticated()) {
                 String principal = ((User) authentication.getPrincipal()).getUsername();
-                AdminEntity admin = adminRepository.findByUsernameAndClient_Id(principal, props.getMarketId());
+                AdminEntity admin = adminRepository.findByUsernameAndClient_Id(principal, props.getClientId());
 
                 HttpSession sess = request.getSession();
                 sess.setAttribute("admin", admin);

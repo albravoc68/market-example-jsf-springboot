@@ -1,4 +1,4 @@
-package cl.example.dashboard.scope;
+package cl.example.jsf.scope;
 
 import java.util.Map;
 

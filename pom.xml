@@ -6,11 +6,14 @@
 
     <groupId>cl.example</groupId>
     <artifactId>cl.example.market</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>app-dashboard</module>
         <module>lib-entities</module>
+        <module>app-market</module>
+        <module>lib-jsf</module>
     </modules>
 
 
