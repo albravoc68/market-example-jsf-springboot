@@ -1,8 +1,8 @@
 package cl.example.market.beans;
 
-import cl.example.entities.domain.entities.vo.ProductVO;
+import cl.example.entities.entities.vo.ProductVO;
+import cl.example.entities.services.ProductService;
 import cl.example.market.MarketConfigurationProperties;
-import cl.example.market.services.ProductService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

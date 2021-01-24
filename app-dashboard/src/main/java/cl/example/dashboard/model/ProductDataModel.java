@@ -1,6 +1,6 @@
 package cl.example.dashboard.model;
 
-import cl.example.entities.domain.entities.ProductEntity;
+import cl.example.entities.entities.ProductEntity;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

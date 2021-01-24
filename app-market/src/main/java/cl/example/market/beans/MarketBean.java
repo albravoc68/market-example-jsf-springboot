@@ -1,9 +1,11 @@
 package cl.example.market.beans;
 
-import cl.example.entities.domain.entities.ClientEntity;
-import cl.example.entities.domain.repositories.ClientRepository;
+import cl.example.entities.entities.ClientEntity;
+import cl.example.entities.entities.UserEntity;
+import cl.example.entities.repositories.ClientRepository;
 import cl.example.market.MarketConfigurationProperties;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.ApplicationScope;
@@ -13,7 +15,7 @@ import java.util.Optional;
 
 @Component
 @ApplicationScope
-public class MarketBean {
+public class MarketBean extends BaseBean {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -31,6 +33,11 @@ public class MarketBean {
             throw new RuntimeException("Unidentified client id.");
         }
         marketName = client.get().getName();
+    }
+
+    public String getUserFullName() {
+        UserEntity user = getSessionUser();
+        return user == null ? null : user.getFullName();
     }
 
 }

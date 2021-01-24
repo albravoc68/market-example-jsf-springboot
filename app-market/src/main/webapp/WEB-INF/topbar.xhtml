@@ -3,6 +3,7 @@
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:jsf="http://xmlns.jcp.org/jsf"
     xmlns:p="http://primefaces.org/ui">
 
     <!--@elvariable id="marketBean" type="cl.example.market.beans.MarketBean"-->
@@ -19,7 +20,12 @@
             </a>
             <a href="#">
                 <span class="topbar-item-text">Perfil</span>
-                <span class="topbar-icon fa fa-user"></span>
+                <span jsf:id="profile_btn" class="topbar-icon fa fa-user"/>
+                <p:overlayPanel for="profile_btn" style="margin-right: 20px; min-width: 150px;">
+                    <p:outputLabel value="#{marketBean.userFullName}" styleClass="ui-g-12" rendered="#{not empty marketBean.userFullName}"/>
+                    <p:button outcome="/login.xhtml" value="Registrarse/Ingresar" rendered="#{empty marketBean.userFullName}"/>
+                    <p:button href="#{request.contextPath}/logout" value="logout" rendered="#{not empty marketBean.userFullName}"/>
+                </p:overlayPanel>
             </a>
         </div>
         

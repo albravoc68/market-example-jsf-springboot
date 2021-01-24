@@ -1,6 +1,7 @@
-package cl.example.dashboard.beans;
+package cl.example.market.beans;
 
-import cl.example.entities.entities.AdminEntity;
+import cl.example.entities.entities.UserEntity;
+import cl.example.market.MarketConfigurationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,12 +16,15 @@ public abstract class BaseBean implements Serializable {
     @Autowired
     private HttpSession session;
 
-    protected AdminEntity getAdmin() {
-        return (AdminEntity) session.getAttribute("admin");
+    @Autowired
+    private MarketConfigurationProperties props;
+
+    protected UserEntity getSessionUser() {
+        return (UserEntity) session.getAttribute("user");
     }
 
     protected int getClientId() {
-        return getAdmin().getClient().getId();
+        return props.getClientId();
     }
 
     protected void showError(String message) {

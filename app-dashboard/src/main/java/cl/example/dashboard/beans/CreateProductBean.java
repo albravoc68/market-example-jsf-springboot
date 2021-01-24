@@ -1,7 +1,7 @@
 package cl.example.dashboard.beans;
 
-import cl.example.dashboard.services.ProductService;
-import cl.example.entities.domain.entities.vo.ProductVO;
+import cl.example.entities.services.ProductService;
+import cl.example.entities.entities.vo.ProductVO;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;

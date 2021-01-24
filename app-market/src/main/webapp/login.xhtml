@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="user" type="cl.example.entities.entities.vo.UserVO"-->
+        <!--@elvariable id="loginBean" type="cl.example.market.beans.LoginBean"-->
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card">
+                    <div class="ui-g-6" style="text-align: -webkit-center; border-right: 1px solid;">
+                        <h1 style="text-align: center;">Login</h1>
+
+                        <form action="#{request.contextPath}/loginProcess" method="post">
+                            <p:panelGrid id="login_panel" columns="2">
+
+                                <p:outputLabel value="Nombre de usuario"/>
+                                <p:inputText id="username" value="#{loginBean.user.username}"/>
+
+                                <p:outputLabel value="Contraseña"/>
+                                <p:inputText id="password" type="password" value="#{loginBean.user.password}"/>
+
+                                <p:spacer/>
+                                <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                                    <span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span>
+                                    <span class="ui-button-text ui-c">Login</span>
+                                </button>
+
+                            </p:panelGrid>
+                        </form>
+
+                    </div>
+                    <h:form id="form" prependId="false">
+                        <p:growl id="msgs" showDetail="true"/>
+                        <div class="ui-g-6" style="text-align: -webkit-center;">
+                            <h1 style="text-align: center;">Registro</h1>
+
+                            <p:panelGrid id="register_panel" columns="2">
+
+                                <p:outputLabel value="Nombre de usuario"/>
+                                <p:inputText value="#{loginBean.user.username}"/>
+
+                                <p:outputLabel value="Contraseña"/>
+                                <p:inputText type="password" value="#{loginBean.user.password}"/>
+
+                                <p:outputLabel value="Nombre completo"/>
+                                <p:inputText value="#{loginBean.user.fullName}"/>
+
+                                <p:spacer/>
+                                <p:commandButton
+                                        value="Crear Usuario"
+                                        ajax="false"
+                                        action="#{loginBean.registerUser}"
+                                        update="form:register_panel, form:msgs"/>
+                            </p:panelGrid>
+                        </div>
+                    </h:form>
+                    <br clear="both"/>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

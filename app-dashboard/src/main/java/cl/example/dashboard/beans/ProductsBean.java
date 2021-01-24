@@ -1,7 +1,7 @@
 package cl.example.dashboard.beans;
 
 import cl.example.dashboard.model.ProductDataModel;
-import cl.example.dashboard.services.ProductService;
+import cl.example.entities.services.ProductService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;

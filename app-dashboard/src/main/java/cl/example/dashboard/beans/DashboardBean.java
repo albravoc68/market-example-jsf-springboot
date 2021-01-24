@@ -1,15 +1,10 @@
 package cl.example.dashboard.beans;
 
-import cl.example.entities.domain.entities.TransactionEntity;
-import cl.example.entities.domain.entities.TransactionProductEntity;
-import cl.example.entities.domain.repositories.ProductRepository;
-import cl.example.entities.domain.repositories.TransactionProductRepository;
-import cl.example.entities.domain.repositories.TransactionRepository;
-import cl.example.entities.domain.repositories.UserRepository;
-import lombok.AllArgsConstructor;
+import cl.example.entities.entities.TransactionProductEntity;
+import cl.example.entities.repositories.ProductRepository;
+import cl.example.entities.repositories.TransactionProductRepository;
+import cl.example.entities.repositories.UserRepository;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

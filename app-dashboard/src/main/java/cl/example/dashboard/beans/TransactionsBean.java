@@ -1,10 +1,9 @@
 package cl.example.dashboard.beans;
 
 import cl.example.dashboard.model.TransactionDataModel;
-import cl.example.dashboard.services.TransactionService;
-import cl.example.entities.domain.entities.ProductEntity;
-import cl.example.entities.domain.entities.TransactionEntity;
-import cl.example.entities.domain.entities.TransactionProductEntity;
+import cl.example.entities.services.TransactionService;
+import cl.example.entities.entities.TransactionEntity;
+import cl.example.entities.entities.TransactionProductEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;

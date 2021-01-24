@@ -14,9 +14,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import javax.faces.webapp.FacesServlet;
 
 @SpringBootApplication
-@EntityScan("cl.example.entities.domain.entities")
+@EntityScan("cl.example.entities.entities")
 @ComponentScan({"cl.example.market", "cl.example.entities", "cl.example.jsf"})
-@EnableJpaRepositories("cl.example.entities.domain.repositories")
+@EnableJpaRepositories("cl.example.entities.repositories")
 public class MarketBootApplication {
 
     public static void main(String[] args) {

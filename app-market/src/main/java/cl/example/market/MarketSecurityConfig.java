@@ -1,7 +1,7 @@
-package cl.example.dashboard;
+package cl.example.market;
 
-import cl.example.entities.entities.AdminEntity;
-import cl.example.entities.repositories.AdminRepository;
+import cl.example.entities.entities.UserEntity;
+import cl.example.entities.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,13 +32,13 @@ import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
-public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
+public class MarketSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AdminRepository adminRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private DashboardConfigurationProperties props;
+    private MarketConfigurationProperties props;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -49,10 +49,11 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/resources/**",
                         "/",
                         "/javax.faces.resource/**",
-                        "/login.xhtml"
+                        "/login.xhtml",
+                        "/index.xhtml"
                 ).permitAll()
                 .anyRequest()
-                .hasAnyRole("ADMIN")
+                .hasAnyRole("USER")
                 .and()
                 .formLogin()
                 .successHandler(new RefererRedirectionAuthenticationSuccessHandler())
@@ -80,19 +81,14 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public UserDetailsService getUserDetailsService() {
         return username -> {
-            AdminEntity admin = adminRepository.findByUsernameAndClient_Id(username, props.getClientId());
-            if (admin == null) {
+            UserEntity user = userRepository.findByUsernameAndClient_Id(username, props.getClientId());
+            if (user == null) {
                 throw new UsernameNotFoundException(username);
             }
-            Collection<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            return new User(username, admin.getPassword(), authorities);
+            Collection<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+            return new User(username, user.getPassword(), authorities);
         };
     }
 
@@ -107,15 +103,20 @@ public class DashboardSecurityConfig extends WebSecurityConfigurerAdapter {
         public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
             if (authentication != null && authentication.isAuthenticated()) {
                 String principal = ((User) authentication.getPrincipal()).getUsername();
-                AdminEntity admin = adminRepository.findByUsernameAndClient_Id(principal, props.getClientId());
+                UserEntity user = userRepository.findByUsernameAndClient_Id(principal, props.getClientId());
 
                 HttpSession sess = request.getSession();
-                sess.setAttribute("admin", admin);
+                sess.setAttribute("user", user);
             }
             new DefaultRedirectStrategy()
                     .sendRedirect(request, response, "/index.html");
         }
 
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

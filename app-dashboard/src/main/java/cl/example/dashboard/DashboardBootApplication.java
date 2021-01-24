@@ -15,9 +15,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("cl.example.entities.domain.entities")
+@EntityScan("cl.example.entities.entities")
 @ComponentScan({"cl.example.dashboard", "cl.example.entities", "cl.example.jsf"})
-@EnableJpaRepositories("cl.example.entities.domain.repositories")
+@EnableJpaRepositories("cl.example.entities.repositories")
 public class DashboardBootApplication {
 
     public static void main(String[] args) {
