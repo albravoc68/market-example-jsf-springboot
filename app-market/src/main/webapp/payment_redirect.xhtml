@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <script>
+            window.onload = function () {
+                setTimeout(function () {
+                    document.getElementById("payment_form").submit();
+                }, 5000);
+            };
+        </script>
+
+        <!--@elvariable id="paymentPost" type="cl.example.market.payments.vos.PostVO"-->
+        <!--@elvariable id="paymentRedirectBean" type="cl.example.market.beans.PaymentRedirectBean"-->
+
+        <div class="ui-g">
+            <div class="card ui-g-12" style="text-align: center; font-size: 20pt;">
+                Redirigiendo...
+                <form id="payment_form" action="#{paymentRedirectBean.paymentPost.action}" method="post">
+                    <p:repeat value="#{paymentRedirectBean.paymentPost.params.entrySet()}" var="entry">
+                        <input type="hidden" name="#{entry.key}" value="#{entry.value}"/>
+                    </p:repeat>
+                </form>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>

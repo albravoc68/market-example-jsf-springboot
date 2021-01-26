@@ -10,6 +10,7 @@
     <composite:attribute name="product" type="cl.example.entities.entities.vo.ProductVO" required="true"/>
     <composite:attribute name="update" type="java.lang.String" required="false"/>
     <composite:attribute name="buttonAction" method-signature="void buttonAction()" required="false"/>
+    <composite:attribute name="onButtonClick" required="false"/>
 </composite:interface>
 
 <composite:implementation>
@@ -17,7 +18,12 @@
         <img src="#{cc.attrs.product.pictureUrl}" alt=""/>
         <h2><p:outputLabel value="#{cc.attrs.product.price}" styleClass="price" converter="cl.example.jsf.converters.ClpConverter"/></h2>
         <p><p:outputLabel value="#{cc.attrs.product.name}"/></p>
-        <p:commandButton icon="fa fa-shopping-cart" value=" Agregar al carrito"/>
+        <p:commandButton
+                icon="fa fa-shopping-cart"
+                value=" Agregar al carrito"
+                action="#{cc.attrs.buttonAction}"
+                onclick="#{cc.attrs.onButtonClick}"
+                update="#{cc.attrs.update}"/>
     </div>
 
 </composite:implementation>

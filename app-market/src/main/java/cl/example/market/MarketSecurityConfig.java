@@ -50,7 +50,8 @@ public class MarketSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/",
                         "/javax.faces.resource/**",
                         "/login.xhtml",
-                        "/index.xhtml"
+                        "/index.xhtml",
+                        "/payment/**"
                 ).permitAll()
                 .anyRequest()
                 .hasAnyRole("USER")

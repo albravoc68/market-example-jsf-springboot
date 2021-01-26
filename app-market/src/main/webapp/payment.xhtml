@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="sessionBean" type="cl.example.market.beans.SessionBean"-->
+        <!--@elvariable id="paymentBean" type="cl.example.market.beans.PaymentBean"-->
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <div class="card">
+                    <div class="ui-g-6" style="border-right: 1px solid;">
+                        <h1 style="text-align: center;">Productos</h1>
+                        <div class="ui-g-3"></div>
+                        <p:dataList
+                                value="#{sessionBean.shoppingCart.amountProducts}"
+                                var="ap"
+                                type="definition"
+                                styleClass="shopping_cart_model ui-g-9"
+                                emptyMessage="Sin productos.">
+
+                            <p:panelGrid columns="6">
+
+                                <p:commandButton
+                                        icon="fa fa-trash"
+                                        action="#{sessionBean.shoppingCart.removeProduct(ap.product.id)}"
+                                        update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                                <p:commandButton
+                                        icon="fa fa-minus-square"
+                                        action="#{sessionBean.shoppingCart.removeProductUnit(ap.product.id)}"
+                                        update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                                <img src="#{ap.product.pictureUrl}" alt="" width="120" height="120"/>
+
+                                <p:commandButton
+                                        icon="fa fa-plus-square"
+                                        action="#{sessionBean.shoppingCart.addProductUnit(ap.product)}"
+                                        update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                                <p:outputLabel value="#{ap.amount}"/>
+
+                                <p:outputLabel value="#{ap.total}" converter="cl.example.jsf.converters.ClpConverter"/>
+
+                            </p:panelGrid>
+
+                        </p:dataList>
+
+                        <div class="ui-g-12" style="text-align: center;">
+                            <p:outputLabel value="Total: "/>
+                            <p:outputLabel
+                                    value="#{sessionBean.shoppingCart.total}"
+                                    converter="cl.example.jsf.converters.ClpConverter"/>
+                        </div>
+                    </div>
+                    <h:form id="form" prependId="false">
+                        <p:growl id="msgs" showDetail="true"/>
+                        <div class="ui-g-6" style="text-align: -webkit-center;">
+                            <h1 style="text-align: center;">Seleccione un método de pago</h1>
+                            <p:graphicImage name="logo-webpayplus.png" library="payment"/>
+
+                            <br/>
+                            <p:commandButton action="#{paymentBean.preparePaymentPage}" value="Pagar"/>
+                        </div>
+                    </h:form>
+                    <br clear="both"/>
+
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

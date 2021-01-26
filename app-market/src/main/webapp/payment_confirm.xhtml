@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <!--@elvariable id="paymentConfirmBean" type="cl.example.market.beans.PaymentConfirmBean"-->
+
+        <div class="ui-g">
+
+            <div class="card ui-g-12">
+                <p:staticMessage
+                        severity="info"
+                        summary="INFO"
+                        detail="¡Transacción id #{paymentConfirmBean.txId} realizada con éxito!"
+                        rendered="#{paymentConfirmBean.success}"/>
+                <p:staticMessage
+                        severity="ERROR"
+                        summary="ERROR"
+                        detail="Error al procesar la transacción id #{paymentConfirmBean.txId}, intentelo de nuevo o contactenos."
+                        rendered="#{!paymentConfirmBean.success}"/>
+
+                <div class="ui-g-5"></div>
+                <form action="#{paymentConfirmBean.detailPost.action}" method="post" style="margin-top: 10px;" jsf:rendered="#{paymentConfirmBean.success}">
+
+                    <p:repeat value="#{paymentConfirmBean.detailPost.params.entrySet()}" var="entry">
+                        <input type="hidden" name="#{entry.key}" value="#{entry.value}"/>
+                    </p:repeat>
+
+                    <button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                        <span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span>
+                        <span class="ui-button-text ui-c">Ver comprobante</span>
+                    </button>
+                    <p:button icon="fa fa-home" outcome="/index.xhtml" value="Volver a la tienda" style="margin-left: 5px;"/>
+                </form>
+                <p:button
+                        icon="fa fa-home"
+                        outcome="/index.xhtml"
+                        value="Volver a la tienda"
+                        style="margin-top: 10px;"
+                        rendered="#{not paymentConfirmBean.success}"/>
+            </div>
+
+        </div>
+
+    </ui:define>
+</ui:composition>

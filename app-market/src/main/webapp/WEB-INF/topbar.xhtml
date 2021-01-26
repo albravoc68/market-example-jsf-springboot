@@ -7,16 +7,73 @@
     xmlns:p="http://primefaces.org/ui">
 
     <!--@elvariable id="marketBean" type="cl.example.market.beans.MarketBean"-->
+    <!--@elvariable id="sessionBean" type="cl.example.market.beans.SessionBean"-->
+    <!--@elvariable id="ap" type="cl.example.market.models.ShoppingCartModel.AmountProduct"-->
 
     <div class="topbar clearfix" style="text-align: center;">
+
+        <p:button icon="fa fa-home" outcome="/index.xhtml" style="float: left; height: 30px; width: 40px;" alt="Volver a la tienda"/>
         
         <span class="topbar-title">#{marketBean.marketName}</span>
         
         <div id="topbar-icons" class="animated">
             <a href="#">
                 <span class="topbar-item-text">Carro de compras</span>
-                <span class="topbar-icon fa fa-shopping-cart animated swing"></span>
-                <span class="topbar-badge animated rubberBand">5</span>
+                <span jsf:id="shopping_cart_btn" class="topbar-icon fa fa-shopping-cart animated swing"></span>
+                <span jsf:id="shopping_cart_amount" jsf:rendered="#{not request.servletPath.equals('/payment.xhtml')}" class="topbar-badge animated rubberBand">#{sessionBean.shoppingCart.amountTotal}</span>
+                <p:overlayPanel
+                        id="shopping_cart_panel"
+                        for="shopping_cart_btn"
+                        style="margin-right: 20px; min-width: 300px;"
+                        rendered="#{not request.servletPath.equals('/payment.xhtml')}">
+                    <p:dataList
+                            id="products_panel_list"
+                            value="#{sessionBean.shoppingCart.amountProducts}"
+                            var="ap"
+                            type="definition"
+                            styleClass="shopping_cart_model"
+                            emptyMessage="Sin productos.">
+
+                        <p:panelGrid columns="6">
+
+                            <p:commandButton
+                                    icon="fa fa-trash"
+                                    action="#{sessionBean.shoppingCart.removeProduct(ap.product.id)}"
+                                    update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                            <p:commandButton
+                                    icon="fa fa-minus-square"
+                                    action="#{sessionBean.shoppingCart.removeProductUnit(ap.product.id)}"
+                                    update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                            <img src="#{ap.product.pictureUrl}" alt="" width="40" height="40"/>
+
+                            <p:commandButton
+                                    icon="fa fa-plus-square"
+                                    action="#{sessionBean.shoppingCart.addProductUnit(ap.product)}"
+                                    update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+
+                            <p:outputLabel id="product_amount" value="#{ap.amount}"/>
+
+                            <p:outputLabel id="product_total" value="#{ap.total}" converter="cl.example.jsf.converters.ClpConverter"/>
+
+                        </p:panelGrid>
+
+                    </p:dataList>
+
+                    <p:outputLabel value="Total: "/>
+                    <p:outputLabel
+                            id="shopping_cart_total"
+                            value="#{sessionBean.shoppingCart.total}"
+                            converter="cl.example.jsf.converters.ClpConverter"/>
+
+                    <br/>
+                    <p:button
+                            id="payment_btn"
+                            value="Ir a pagar"
+                            disabled="#{sessionBean.shoppingCart.isEmpty()}"
+                            outcome="/payment.xhtml"/>
+                </p:overlayPanel>
             </a>
             <a href="#">
                 <span class="topbar-item-text">Perfil</span>

@@ -9,6 +9,7 @@
     <ui:define name="content">
         <!--@elvariable id="product" type="cl.example.entities.entities.vo.ProductVO"-->
         <!--@elvariable id="shopBean" type="cl.example.market.beans.ShopBean"-->
+        <!--@elvariable id="sessionBean" type="cl.example.market.beans.SessionBean"-->
 
         <h:form id="form">
             <p:growl id="msgs" showDetail="true"/>
@@ -19,9 +20,14 @@
                         <h1 style="text-align: center;">Productos</h1>
 
                         <div class="ui-panelgrid-blank ui-fluid ui-g-12">
-                            <p:repeat value="#{shopBean.products}" var="product">
-                                <mc:productCard product="#{product}"/>
-                            </p:repeat>
+                            <p:dataList value="#{shopBean.products}" var="product" styleClass="product-card-list" type="definition">
+                                <p:column>
+                                    <mc:productCard
+                                            product="#{product}"
+                                            buttonAction="#{sessionBean.shoppingCart.addProductUnit(product)}"
+                                            update="shopping_cart_amount, products_panel_list, shopping_cart_total, payment_btn"/>
+                                </p:column>
+                            </p:dataList>
                         </div>
 
                         <br clear="both"/>

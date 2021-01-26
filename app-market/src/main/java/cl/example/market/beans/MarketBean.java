@@ -5,7 +5,6 @@ import cl.example.entities.entities.UserEntity;
 import cl.example.entities.repositories.ClientRepository;
 import cl.example.market.MarketConfigurationProperties;
 import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.ApplicationScope;

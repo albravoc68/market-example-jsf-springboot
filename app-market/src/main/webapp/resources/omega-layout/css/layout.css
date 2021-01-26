@@ -4435,4 +4435,16 @@ body .p-datepicker-panel .ui-datepicker-buttonbar .ui-button:focus, body .p-date
   font-size: 25pt;
 }
 
+.product-card-list {
+  border: none;
+}
+
+.product-card-list .ui-datalist-content.ui-widget-content,
+.shopping_cart_model .ui-datalist-content.ui-widget-content,
+.shopping_cart_model .ui-datalist-item,
+.shopping_cart_model .ui-widget-content,
+.shopping_cart_model .ui-widget-content .ui-panelgrid-cell {
+  border: none;
+}
+
 /*# sourceMappingURL=layout.css.map */
