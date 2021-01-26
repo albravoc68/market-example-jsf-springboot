@@ -98,4 +98,5 @@ https://github.com/othneildrew/Best-README-Template
 ## Contact
 
 Alejandro Bravo Cáceres - al.bravoc68@gmail.com
+<br/>
 https://www.linkedin.com/in/alejandro-maximiliano-bravo-c%C3%A1ceres-613423179/
