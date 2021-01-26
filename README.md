@@ -78,9 +78,11 @@ The omega-menu-2.0.1.jar file must be installed using the following command in t
 <!-- USAGE EXAMPLES -->
 ## Images
 <img src="readme-images/login.png" width="80" height="80">  <img src="readme-images/dashboard.png" width="80" height="80">
-<img src="readme-images/products.png" width="80" height="80"> <img src="readme-images/create-product.png" width="80" height="80">
+<img src="readme-images/products.png" width="80" height="80"> <img src="readme-images/create_product.png" width="80" height="80">
 <img src="readme-images/transactions.png" width="80" height="80"> <img src="readme-images/users.png" width="80" height="80">
-<img src="readme-images/create-user.png" width="80" height="80">
+<img src="readme-images/create_user.png" width="80" height="80"> <img src="readme-images/login_register.png" width="80" height="80">
+<img src="readme-images/pay.png" width="80" height="80"> <img src="readme-images/shopping_cart.png" width="80" height="80">
+<img src="readme-images/tbk_pay.png" width="80" height="80"> <img src="readme-images/test_store.png" width="80" height="80">
 
 <!-- LICENSE -->
 ## License
