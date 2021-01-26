@@ -44,10 +44,10 @@
 
 This project contemplates the creation of two applications:
 
-(In Progress) Online store (app-market):
-- It must show the products created in the dashboard.
-- You must allow payment through the OneClick api. (dev environment).
-- It must allow the creation of users.
+(Done!) Online store (app-market):
+- It must show the products created in the dashboard. ✓
+- You must allow payment through the OneClick api. (dev environment). ✓
+- It must allow the creation of users. ✓
 
 (Done!) Dashboard (app-dashboard):
 - The login must be restricted to admin users. ✓
@@ -98,3 +98,4 @@ https://github.com/othneildrew/Best-README-Template
 ## Contact
 
 Alejandro Bravo Cáceres - al.bravoc68@gmail.com
+https://www.linkedin.com/in/alejandro-maximiliano-bravo-c%C3%A1ceres-613423179/
